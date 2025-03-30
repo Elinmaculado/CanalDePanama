@@ -8,6 +8,5 @@ public abstract class BaseState
     // Necesitan el StateManager cómo parámetro ya que StateManager es el contexto que le da info a todos los estados
     public abstract void EnterState(StateManager ship);
     public abstract void UpdateState(StateManager ship);
-    public abstract void OnCollisionEnter(StateManager ship);
     public abstract void ExitState(StateManager ship);
 }

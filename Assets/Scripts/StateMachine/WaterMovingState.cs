@@ -1,11 +1,13 @@
+using UnityEditor;
 using UnityEngine;
 
 public class WaterMovingState : BaseState
 {
-    private float moveDuration = 2.5f; // Duración en segundos
+    private float moveDuration = 2.5f;
     private float elapsedTime = 0f;
     private GameObject currentWater;
     private GameObject currentPole;
+    private GameObject boat; 
     private bool isMovingPole = false; // Para saber si estamos moviendo el poste
     private bool isGoingUp = false;
     private bool movingBoat = false;
@@ -18,6 +20,7 @@ public class WaterMovingState : BaseState
         isGoingUp = false;
         currentWater = ship.GetNextWater(); // Obtener el siguiente agua
         currentPole = ship.GetNextPole(); // Obtener el siguiente poste
+        boat = ship.ship;
     }
 
     public override void UpdateState(StateManager ship)
@@ -55,7 +58,22 @@ public class WaterMovingState : BaseState
                 Debug.Log("Poste movido, volviendo al barco...");
                 isGoingUp = true;
                 elapsedTime = 0f; // Reiniciamos el tiempo para el agua
+                movingBoat = true;
                 //ship.SwitchState(ship.ShipMovingState); // Después del poste, vuelve a mover el barco
+            }
+        }
+        if (movingBoat)
+        {
+            if (boat != null && elapsedTime < moveDuration)
+            {
+                boat.transform.position += new Vector3(1, 0, 0) * Time.deltaTime;
+                elapsedTime += Time.deltaTime;
+            }
+            else
+            {
+                Debug.Log("Barco movido, ahora el agua...");
+                movingBoat = false;
+                elapsedTime = 0f; // Reiniciamos el tiempo para el agua
             }
         }
         // Poste arriba
@@ -78,6 +96,7 @@ public class WaterMovingState : BaseState
             if (currentWater != null && elapsedTime < moveDuration)
             {
                 currentWater.transform.position += new Vector3(0, 1, 0) * Time.deltaTime;
+                boat.transform.position += new Vector3(0, 1, 0) * Time.deltaTime;
                 elapsedTime += Time.deltaTime;
             }
             else
@@ -94,6 +113,4 @@ public class WaterMovingState : BaseState
     {
         Debug.Log("Se terminó de mover el agua y el poste");
     }
-
-    public override void OnCollisionEnter(StateManager ship) { }
 }

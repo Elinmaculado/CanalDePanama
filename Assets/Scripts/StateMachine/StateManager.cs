@@ -8,11 +8,12 @@ public class StateManager : MonoBehaviour
     public List<GameObject> water;
     public List<GameObject> poles;
 
-    private int waterIndex = 0; // Índice del agua a mover
-    private int poleIndex = 0; // Índice del poste a mover
+    private int waterIndex = 0;
+    private int poleIndex = 0;
 
     public ShipMovingState ShipMovingState = new ShipMovingState();
     public WaterMovingState WaterMovingState = new WaterMovingState();
+    public Allup Allup = new Allup();
 
     private void Start()
     {
@@ -47,6 +48,6 @@ public class StateManager : MonoBehaviour
         {
             return poles[poleIndex++];
         }
-        return null; // Si no hay más postes, devuelve null
+        return null;
     }
 }

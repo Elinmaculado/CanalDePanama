@@ -4,13 +4,10 @@ public class ShipMovingState : BaseState
 {
     private float moveDuration = 2.5f;
     private float currentTime = 0;
-
-    // Agregamos override porque para el mismo método el comportamiento cambia en cada estado
     public override void EnterState(StateManager ship)
     {
         Debug.Log("El barco se está moviendo");
         currentTime = 0;
-        //ship.transform.localScale = startSize;
     }
 
     public override void UpdateState(StateManager ship)
@@ -25,8 +22,6 @@ public class ShipMovingState : BaseState
         {
             ship.SwitchState(ship.WaterMovingState);
         }
-   
-        //ship.ship.transform.position += new Vector3(1, 0, 0) * Time.deltaTime;
 
     }
 
@@ -34,10 +29,6 @@ public class ShipMovingState : BaseState
     public override void ExitState(StateManager apple)
     {
         Debug.Log("Se salió del estado: " + this.GetType().Name);
-    }
-    public override void OnCollisionEnter(StateManager apple)
-    {
-        //Este estado no usa onCollisionEnter
     }
 
 }
