@@ -12,15 +12,15 @@ public class Avanzando : BS
     }
     public override void UpdateState(SM ship)
     {
-        if (elapsedTime < moveDuration)
-        {
-            boat.transform.position += new Vector3(1, 0, 0) * Time.deltaTime;
-            elapsedTime += Time.deltaTime;
-        }
-        else
-        {
-            ship.SwitchState(ship.CerrandoPuerta);
-        }
+            if (elapsedTime < moveDuration)
+            {
+                boat.transform.position += new Vector3(1, 0, 0) * Time.deltaTime;
+                elapsedTime += Time.deltaTime;
+            }
+            else
+            {
+                ship.SwitchState(ship.CerrandoPuerta);
+            }
     }
     public override void ExitState(SM ship)
     {

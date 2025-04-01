@@ -7,6 +7,7 @@ public class AbriendoPuerta : BS
     private float elapsedTime = 0f;
     public override void EnterState(SM ship)
     {
+        Debug.Log("Abriendo");
         currentPole = ship.poles[ship.poleIndex];
         elapsedTime = 0f;
     }
@@ -25,6 +26,6 @@ public class AbriendoPuerta : BS
     public override void ExitState(SM ship)
     {
         elapsedTime = 0f;
-        Debug.Log("Puerta Abierta");
+        //Debug.Log("Puerta Abierta");
     }
 }

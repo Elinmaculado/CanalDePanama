@@ -10,6 +10,7 @@ public class SM : MonoBehaviour
     public Avanzando Avanzando = new Avanzando();
     public CerrandoPuerta CerrandoPuerta = new CerrandoPuerta();
     public LlenandoAgua LlenandoAgua = new LlenandoAgua();
+    public StandBy StandBy = new StandBy();
 
     // Objetos
     public GameObject ship;
@@ -19,6 +20,7 @@ public class SM : MonoBehaviour
     public int waterIndex = 0;
     public int poleIndex = 0;
 
+    public bool atTop = false;
 
     private void Start()
     {

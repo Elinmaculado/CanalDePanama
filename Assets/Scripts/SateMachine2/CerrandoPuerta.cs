@@ -7,11 +7,16 @@ public class CerrandoPuerta : BS
     private float elapsedTime = 0f;
     public override void EnterState(SM ship)
     {
+        Debug.Log("Cerrando");
         currentPole = ship.poles[ship.poleIndex];
         elapsedTime = 0f;
     }
     public override void UpdateState(SM ship)
     {
+        if (ship.atTop)
+        {
+            ship.SwitchState(ship.VaciandoAgua);
+        }
         if (elapsedTime < moveDuration)
         {
             currentPole.transform.position += new Vector3(0, 1, 0) * Time.deltaTime;
@@ -26,6 +31,6 @@ public class CerrandoPuerta : BS
     {
         elapsedTime = 0f;
         ship.GetNextPole();
-        Debug.Log("Puerta Abierta");
+        //Debug.Log("Puerta Abierta");
     }
 }
