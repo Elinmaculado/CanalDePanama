@@ -25,10 +25,10 @@ public class VaciandoAgua : BS
             }
             else
             {
-                ship.SwitchState(ship.StandBy);
+                ship.SwitchState(ship.LlenandoAgua);
             }
         }
-        else if (elapsedTime < moveDuration)
+        if (elapsedTime < moveDuration)
         {
             currentWater.transform.position += new Vector3(0, -1, 0) * Time.deltaTime;
             elapsedTime += Time.deltaTime;
